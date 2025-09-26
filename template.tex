@@ -1,1 +1,204 @@
+% =========================================================================
+%       B.TECH MAJOR PROJECT REPORT TEMPLATE - IIT DELHI (TEXTILE DEPT.)
+% =========================================================================
+% This template is based on the report by Lakshya Kumar & Keshav Chachan.
+% It is designed for use by students of the Department of Textile and
+% Fibre Engineering, IIT Delhi.
+% =========================================================================
 
+\documentclass[a4paper, 12pt, twoside]{article}
+
+\input{setup.tex}
+% =========================================================================
+%       START OF DOCUMENT
+% =========================================================================
+\begin{document}
+
+\onehalfspacing % Set line spacing for the document
+
+% --- TITLE PAGE ---
+\begin{titlepage}
+    \centering
+    \vspace*{\stretch{1.0}}
+    
+    {\Huge\bfseries [Your Project Title Here]\par}
+    
+    \vspace{1.5cm}
+    
+    {\Large\bfseries TXD 401: Major Project Part I}\par
+    {\Large\bfseries (Mid-Term Report)}\par
+    
+    \vspace{2cm}
+    
+    {\large Lakshya Kumar (2022TT12183)}\par
+    {\large Keshav Chachan (2022TT12148)}\par
+    
+    \vspace{2cm}
+    
+    \begin{minipage}{0.35\textwidth}
+        \raggedright
+        {\large Under the Guidance of}\par
+        \vspace{0.5cm}
+        {\large \textbf{Name of Professor}}\par
+    \end{minipage}
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \fbox{
+            \begin{minipage}[c][1in][c]{1.5in}
+                \centering
+                _____________
+            \end{minipage}}
+    \end{minipage}
+    
+    \vspace*{\stretch{2.0}}
+    \includegraphics[width=0.3\textwidth]{images/iit logo.png}\par 
+    
+    {\large\bfseries Department of Textile and Fibre Engineering}\par
+    {\large\bfseries Indian Institute of Technology Delhi}\par
+    
+    \vspace{0.5cm}
+    
+    {\large [Month] [Year]}\par
+\end{titlepage}
+\clearpage
+
+% --- ACKNOWLEDGEMENT ---
+\section*{Acknowledgement}
+\addcontentsline{toc}{section}{Acknowledgement}
+
+Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+\clearpage
+
+% --- TABLE OF CONTENTS, LIST OF FIGURES, LIST OF TABLES ---
+% These will be generated automatically by LaTeX
+\begin{singlespace}
+    \tableofcontents
+    \clearpage
+    \listoffigures
+    \addcontentsline{toc}{section}{List of Figures}
+    \clearpage
+    \listoftables
+    \addcontentsline{toc}{section}{List of Tables}
+\end{singlespace}
+
+\clearpage
+
+% =========================================================================
+%       MAIN CONTENT STARTS HERE
+% =========================================================================
+
+% --- CHAPTER 1: INTRODUCTION ---
+\section{Introduction} 
+\hrule
+\vspace{0.5cm}
+
+[Start writing your introduction here. Provide background, define the problem]
+
+\clearpage
+
+% --- CHAPTER 2: LITERATURE REVIEW ---
+\section{Literature Review} 
+\hrule
+\vspace{0.5cm}
+
+[Provide a review of existing research relevant to your project. This is where you cite previous work and identify the research gaps your project aims to fill.]
+
+\subsection{[Example Subsection Title]}
+
+[Content for your subsection.]
+
+% Example of how to include a figure
+\begin{figure}[H]
+    \centering
+    % Use a placeholder image or your own image file
+    \includegraphics[width=0.6\textwidth]{images/cat.jpg} 
+    \caption{[Your figure caption here.]}
+    \label{fig:example_figure}
+\end{figure}
+
+% Example of how to include a table
+\begin{table}[H]
+    \centering
+    \caption{[Your table caption here.]}
+    \label{tab:example_table}
+    \begin{tabular}{|l|c|r|}
+        \hline
+        \textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} \\ \hline
+        Data 1 & Data 2 & Data 3 \\ \hline
+        Data 4 & Data 5 & Data 6 \\ \hline
+    \end{tabular}
+\end{table}
+
+\clearpage
+
+% --- CHAPTER 3: OBJECTIVES ---
+\section{Objectives} 
+\hrule
+\vspace{0.5cm}
+
+[Clearly list the main objectives of your project. An enumerated list is often effective here.]
+
+\clearpage
+
+% --- CHAPTER 4: PLAN OF WORK ---
+\section{Plan of Work} 
+\hrule
+\vspace{0.5cm}
+
+[Outline the methodology and phases of your project. You can describe the steps you will take to achieve your objectives. A timeline or a flowchart can be very helpful here.]
+
+\subsection{[Phase 1 Title]}
+    \subsubsection{[Sub Topic 1]}
+
+\subsection{[Phase 2 Title]}
+\subsubsection{[Sub Topic 2]}
+
+\clearpage
+
+% --- CHAPTER 5: EXPERIMENTAL SECTION / METHODOLOGY ---
+\section{Experimental Section} 
+\hrule
+\vspace{0.5cm}
+
+[Detail the experiments you conducted, the materials you used, and the procedures you followed. Be specific so that someone else could replicate your work.]
+
+\subsubsection{[Dataset Creation / Sample Preparation]}
+
+[Describe the process here.]
+
+\clearpage
+
+% --- CHAPTER 6: SUMMARY AND CONCLUSIONS ---
+\section{Summary and Conclusions} 
+\hrule
+\vspace{0.5cm}
+
+[Summarize your work and key findings. Discuss the conclusions you have drawn from your results. You can also mention the limitations of your work and suggest directions for future research.]
+
+\clearpage
+
+% --- REFERENCES ---
+\section*{References}
+\addcontentsline{toc}{section}{References}
+\renewcommand{\refname}{} % Hides the default "References" title
+
+% Use the bibitem format for your references.
+% The key in curly braces (e.g., {key1}) is what you'll use to cite in the text with \cite{key1}.
+\begin{thebibliography}{99}
+
+\bibitem{key1}
+[Author(s), Title, Journal/Conference, Year, Volume/Issue, Pages.]
+
+\bibitem{key2}
+[Author(s), Title, Publisher, Year.]
+
+\bibitem{key3}
+[Website Name, "Page Title," URL, (Accessed: Date).]
+
+\end{thebibliography}
+
+\end{document}
+% =========================================================================
+%       END OF DOCUMENT
+% =========================================================================
