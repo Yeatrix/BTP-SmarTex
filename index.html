@@ -63,6 +63,13 @@
         nav ul li a:hover {
             color: var(--primary-color);
         }
+        .project-notice {
+            background-color: #e3f2fd;
+            color: var(--primary-color);
+            text-align: center;
+            padding: 10px 20px;
+            font-weight: 500;
+        }
         .hero {
             background: linear-gradient(rgba(13, 71, 161, 0.8), rgba(13, 71, 161, 0.8)), url('https://images.unsplash.com/photo-1555529771-83d31a462356?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
             color: white;
@@ -84,6 +91,8 @@
             font-weight: bold;
             transition: background-color 0.3s, transform 0.3s;
             margin: 0 10px;
+            cursor: pointer;
+            border: none;
         }
         .btn-primary {
             background-color: var(--accent-color);
@@ -91,16 +100,6 @@
         }
         .btn-primary:hover {
             background-color: #ffd180;
-            transform: translateY(-2px);
-        }
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid var(--accent-color);
-        }
-        .btn-secondary:hover {
-            background-color: var(--accent-color);
-            color: var(--text-color);
             transform: translateY(-2px);
         }
         section {
@@ -131,11 +130,21 @@
         .card h3 {
             color: var(--secondary-color);
             margin-top: 0;
+            text-align: center;
         }
         .methodology-flow {
             max-width: 100%;
             border-radius: 10px;
             box-shadow: var(--shadow);
+        }
+        #results .grid {
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            align-items: start;
+        }
+        .result-card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
         }
         .team-member {
             text-align: center;
@@ -147,6 +156,31 @@
         .team-member p {
             font-style: italic;
             color: #666;
+        }
+        #references ol {
+            list-style-type: none;
+            counter-reset: reference-counter;
+            padding-left: 0;
+        }
+        #references li {
+            counter-increment: reference-counter;
+            margin-bottom: 1.2rem;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+        #references li::before {
+            content: "[" counter(reference-counter) "]";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .acknowledgment-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+            color: #555;
         }
         footer {
             background: var(--footer-bg);
@@ -225,18 +259,22 @@
                     <li><a href="#methodology">Methodology</a></li>
                     <li><a href="#results">Results</a></li>
                     <li><a href="#team">Team</a></li>
+                    <li><a href="#references">References</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <div class="project-notice">
+        A B.Tech Major Project by Undergraduate Students of the Department of Textile and Fibre Engineering, IIT Delhi
+    </div>
 
     <main>
         <section class="hero">
             <h1>Automated Textile Detection with MIR Imaging</h1>
             <p>A non-destructive and efficient approach to material detection using Mid-Infrared Imaging and Machine Learning for a circular economy.</p>
             <div>
-                <a href="BTP_MidTerm_Report.pdf" target="_blank" class="btn btn-primary">View Full Report (PDF)</a>
-                <button id="viewSourceBtn" class="btn btn-secondary">View LaTeX Source</button>
+                <button id="viewSourceBtn" class="btn btn-primary">View Mid-Term Report & Source</button>
             </div>
         </section>
 
@@ -245,15 +283,15 @@
             <div class="grid">
                 <div class="card">
                     <h3>The Problem</h3>
-                    [cite_start]<p>India generates about <strong>7.8 million tons of textile waste annually</strong>, with a large portion ending up in landfills[cite: 32, 34]. [cite_start]Manual sorting is slow, error-prone, and a major bottleneck for effective recycling[cite: 38, 39]. This inefficiency hinders the potential for a circular textile economy.</p>
+                    <p>India generates about <strong>7.8 million tons of textile waste annually</strong>, with a large portion ending up in landfills. Manual sorting is slow, error-prone, and a major bottleneck for effective recycling. This inefficiency hinders the potential for a circular textile economy.</p>
                 </div>
                 <div class="card">
                     <h3>Our Solution</h3>
-                    [cite_start]<p>This project explores an automated, non-destructive method for identifying textile materials using <strong>Mid-Infrared (MIR) imaging and machine learning</strong>[cite: 41]. [cite_start]By leveraging the unique chemical fingerprints MIR provides, we aim to make textile sorting faster, more accurate, and scalable[cite: 42].</p>
+                    <p>This project explores an automated, non-destructive method for identifying textile materials using <strong>Mid-Infrared (MIR) imaging and machine learning</strong>. By leveraging the unique chemical fingerprints MIR provides, we aim to make textile sorting faster, more accurate, and scalable.</p>
                 </div>
                 <div class="card">
                     <h3>Project Objectives</h3>
-                    <p>Our main goal is to develop a reliable system for fabric identification. [cite_start]Key objectives include: creating a validated MIR spectral dataset for cotton, polyester, and nylon; building and training various ML models (KNN, SVM, 1D-CNN); and benchmarking their performance to find the most effective classifier[cite: 173, 176, 177, 179].</p>
+                    <p>Our main goal is to develop a reliable system for fabric identification. Key objectives include: creating a validated MIR spectral dataset for cotton, polyester, and nylon; building and training various ML models (KNN, SVM, 1D-CNN); and benchmarking their performance to find the most effective classifier.</p>
                 </div>
             </div>
         </section>
@@ -270,31 +308,22 @@
 
         <section id="results" class="container">
             <h2>Initial Results & Dataset</h2>
-            [cite_start]<p style="text-align:center; max-width: 800px; margin: 0 auto 40px;">As of September 20, our initial dataset consists of <strong>120 MIR images</strong> (40 for each fabric type) captured under controlled laboratory conditions[cite: 258, 260]. [cite_start]Each fabric's identity was rigorously verified using burn and chemical solubility tests to ensure data integrity[cite: 232].</p>
+            <p style="text-align:center; max-width: 800px; margin: 0 auto 40px;">As of September 20, our initial dataset consists of <strong>120 MIR images</strong> (40 for each fabric type) captured under controlled laboratory conditions. Each fabric's identity was rigorously verified using burn and chemical solubility tests to ensure data integrity.</p>
             <div class="grid">
-                <div class="card">
-                    <h3>(a) Nylon Sample</h3>
-                    <img src="images//nylon_sample.jpg" alt="Nylon Sample" style="width:100%; border-radius: 5px;">
+                <div class="card result-card">
+                    <h3>Nylon</h3>
+                    <img src="images//nylon_sample.jpg" alt="Nylon Sample">
+                    <img src="images//nylon.jpg" alt="MIR Image of Nylon">
                 </div>
-                <div class="card">
-                    <h3>(d) MIR Image of Nylon</h3>
-                    <img src="images//nylon.jpg" alt="MIR Image of Nylon" style="width:100%; border-radius: 5px;">
+                <div class="card result-card">
+                    <h3>Cotton</h3>
+                    <img src="images//cotton_sample.jpg" alt="Cotton Sample">
+                    <img src="images//cotton.jpg" alt="MIR Image of Cotton">
                 </div>
-                <div class="card">
-                    <h3>(b) Cotton Sample</h3>
-                    <img src="images//cotton_sample.jpg" alt="Cotton Sample" style="width:100%; border-radius: 5px;">
-                </div>
-                 <div class="card">
-                    <h3>(e) MIR Image of Cotton</h3>
-                    <img src="images//cotton.jpg" alt="MIR Image of Cotton" style="width:100%; border-radius: 5px;">
-                </div>
-                <div class="card">
-                    <h3>(c) Polyester Sample</h3>
-                    <img src="images/polyester_sample.jpg" alt="Polyester Sample" style="width:100%; border-radius: 5px;">
-                </div>
-                <div class="card">
-                    <h3>(f) MIR Image of Polyester</h3>
-                    <img src="images/polyester.jpg" alt="MIR Image of Polyester" style="width:100%; border-radius: 5px;">
+                <div class="card result-card">
+                    <h3>Polyester</h3>
+                    <img src="images/polyester_sample.jpg" alt="Polyester Sample">
+                    <img src="images/polyester.jpg" alt="MIR Image of Polyester">
                 </div>
             </div>
         </section>
@@ -319,6 +348,31 @@
                 </div>
             </div>
         </section>
+        
+        <hr>
+
+        <section id="references" class="container">
+            <h2>References</h2>
+            <ol>
+                <li>Fashion for Good, Sorting for Circularity: India Wealth in Waste. Complete URL: https://www.fashionforgood.com/report/wealth-in-waste/ [Accessed on August 22, 2025].</li>
+                <li>Peets, P., Kaupmees, K., Vahur, S., Leito, I., Reflectance FT-IR spectroscopy as a viable option for textile fiber identification. <i>Heritage Science</i>, 2019, 7, 93.</li>
+                <li>Manley, M., Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials. <i>Chemical Society Reviews</i>, 2014, 43, 8200-8214.</li>
+                <li>Shi, C., Sang, J., Qualitative recognition of waste textiles based on near-infrared spectroscopy and ModernTCN. <i>Microchemical Journal</i>, 2025, 214, 113902.</li>
+                <li>Kainz, M., Krondorfer, J.K., Jaschik, M., Jernej, M., Ganster, H., Supervised and unsupervised textile classification via near-infrared hyperspectral imaging and deep learning. <i>arXiv preprint</i>, arXiv:2505.03575, 2025.</li>
+                <li>Huang, J., Li, Y., Gao, S., et al., Non-destructive detection and classification of textile fibres based on hyperspectral imaging and ID-CNN. <i>Analytica Chimica Acta</i>, 2022, 1224, 340238.</li>
+                <li>Enders, A.A., North, N.M., Fensore, C.M., Velez-Alvarez, J., Allen, H.C., Functional group identification for FTIR spectra using image-based machine learning models. <i>Analytical Chemistry</i>, 2021, 93, 9711-9718.</li>
+                <li>Zhou, J., Yu, L., Ding, Q., Wang, R., Textile fiber identification using near-infrared spectroscopy and pattern recognition. <i>AUTEX Research Journal</i>, 2019, 19(2), 201-209.</li>
+            </ol>
+        </section>
+
+        <hr>
+
+        <section id="ai-acknowledgment" class="container">
+             <h2>Website Acknowledgment</h2>
+             <p class="acknowledgment-text">
+                This project website was developed with the assistance of generative AI tools. The HTML, CSS, and JavaScript code were generated based on the content of the academic report to facilitate the rapid creation of this digital presentation.
+             </p>
+        </section>
     </main>
 
     <footer>
@@ -332,28 +386,463 @@
             <span class="close-btn">&times;</span>
             <button id="toggleViewBtn" class="toggle-btn">Toggle View</button>
             <div id="pdfContainer">
-                <iframe class="pdf-view" src="report&presentation\BTP_MidTerm_Report.pdf"></iframe>
+                <iframe class="pdf-view" src="report&presentation\BTP_Report.pdf"></iframe>
             </div>
             <div id="latexContainer" style="display:none;">
                 <pre class="latex-code"><code>
-% Add Your LaTeX Code Here.
-% This is a placeholder. For a real implementation, 
-% you would fetch or embed the actual .tex file content.
+\documentclass[a4paper, 12pt, twoside]{article}
 
-\documentclass{article}
+\usepackage[top=1in, bottom=1in, inner=1.5in, outer=1in]{geometry}
+\usepackage{times}
 \usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[labelfont=bf]{caption}
 \usepackage{amsmath}
-\title{Mid-Infrared Imaging and Machine Learning Approaches for Non-Destructive Material Detection of Textile Fabrics}
-\author{Lakshya Kumar (2022TT12183) \and Keshav Chachan (2022TT12148)}
-\date{September 2025}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{pdfpages}
+\usepackage{titlesec}
+\usepackage{changepage}
+\usepackage{enumitem}
+
+\titleformat{\section}
+ {\normalfont\Large\bfseries}
+ {Chapter \thesection}
+ {1em}
+ {}
+\titleformat{name=\section*,numberless}
+ {\normalfont\Large\bfseries}
+ {}
+ {0em}
+ {}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{name=\section*,numberless}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+\titleformat{\subsection}
+ {\normalfont\normalsize\bfseries}
+ {\thesubsection}
+ {1em}
+ {\MakeUppercase}
+\titleformat{\subsubsection}
+ {\normalfont\normalsize\bfseries}
+ {\thesubsubsection}
+ {1em}
+ {}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
 \begin{document}
-\maketitle
 
-\section{Introduction}
-India has a big problem with textile waste management. Every year, about 7.8 million tons of textile waste are made. It is very important to think about how to get rid of this waste. About 34\% of it ends up in landfills, 25\% is downcycled, and 17\% is reused or mechanically recycled...
+\onehalfspacing
 
-% ... rest of the LaTeX document would go here.
+\begin{titlepage}
+    \centering
+    \vspace*{\stretch{1.0}}
+    
+    {\Huge\bfseries Mid-Infrared Imaging and Machine Learning Approaches for Non-Destructive and Efficient Material Detection of Textile Fabrics\par}
+    
+    \vspace{1.5cm}
+    
+    {\Large\bfseries TXD 401: Major Project Part I}\par
+    {\Large\bfseries (Mid-Term Report)}\par
+    
+    \vspace{2cm}
+    
+    {\large Lakshya Kumar (2022TT12183)}\par
+    {\large Keshav Chachan (2022TT12148)}\par
+    
+    \vspace{2cm}
+    
+    \begin{minipage}{0.35\textwidth}
+        \raggedright
+        {\large Under the Guidance of}\par
+        \vspace{0.5cm}
+        {\large \textbf{Prof. Apurba Das}}\par
+        % {\large Prof. Bipin Kumar}\par
+    \end{minipage}%
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \fbox{
+            \begin{minipage}[c][1in][c]{1.5in}
+                \centering
+                _____________
+            \end{minipage}
+        }
+    \end{minipage}
+    
+    \vspace*{\stretch{2.0}}
+    
+    \includegraphics[width=0.3\textwidth]{images/iit logo.png}\par 
+    
+    {\large\bfseries Department of Textile and Fibre Engineering}\par
+    {\large\bfseries Indian Institute of Technology Delhi}\par
+    
+    \vspace{0.5cm}
+    
+    {\large September 2025}\par
+\end{titlepage}
+
+\clearpage
+\section*{Acknowledgement}
+\addcontentsline{toc}{section}{Acknowledgement}
+We wish to express our deepest gratitude to our supervisors, Prof. Apurba Das (Principal Investigator) and Prof. Bipin Kumar (Co-Principal Investigator), for their constant encouragement, patience, and motivation throughout this project. Their immense knowledge and guidance steered us in the right direction whenever we needed it. We could not have imagined better advisors for our research.
+
+We would also like to thank Sagar sir for being an excellent mentor. He brought structure to our research and thought process, allowing us to grow in this field of study. We thank the Department of Textile and Fibre Engineering for providing the necessary laboratory and resources for experiments.
+
+Lastly, we would like to dedicate this work to our beloved parents for their love and constant support throughout our lives.
+
+\begin{singlespace}
+    \clearpage
+    \tableofcontents
+    \clearpage
+    \listoffigures
+    \addcontentsline{toc}{section}{List of Figures}
+    \clearpage
+    \listoftables
+    \addcontentsline{toc}{section}{List of Tables}
+\end{singlespace}
+
+\clearpage
+
+% to be reviewed
+\section{Introduction} 
+\hrule
+\vspace{0.5cm}
+India has a big problem with textile waste management. Every year, about 7.8 million tons of textile waste are made. It is very important to think about how to get rid of this waste. About 34\% of it ends up in landfills, 25\% is downcycled, and 17\% is reused or mechanically recycled. 19\% of the waste is burned, while less than 1\% is recycled using chemicals and biological methods [1]. This information shows that we need to find ways to recycle more efficiently and for more money.
+
+
+The sorting process is a big problem that makes it hard to improve textile recycling rates. In India, sorting textiles is mostly done by hand, making up 90–95\% of all sorting methods [1]. Sorting by hand takes a lot of time and effort, and it's easy for people to make mistakes, which can lead to contamination in batches of recycled materials. Automated sorting technologies are a better option because they can be used on a larger scale and are more precise. This project looks into a non-destructive, automated way to use mid-infrared (MIR) imaging and machine learning to find textile materials. The goal is to make textile sorting more efficient and accurate for a circular economy.
+
+\clearpage
+
+% little bit left mostly done
+\section{Literature Review} 
+\hrule
+\vspace{0.5cm}
+Textile fibers are common in everyday life, and their classification and identification are essential in textile recycling, archeology, cultural heritage protection, and public safety. Traditional textile fibres detection methods include visual inspection, microscopic observation, and combustion. With the continuous improvement and updating of detection technology, the current detection methods for textile fibres are chromatography and spectral methods.  Chromatography damages the textile fibres and cannot maintain samples integrity [6]. Traditional methods are time-consuming, labor-intensive, and damaging to the samples, hence their use in extensive or delicate situations are limited [6]. On the other hand, spectroscopic methods like Fourier Transform Infrared (FTIR) spectroscopy [2], Near-Infrared (NIR) spectroscopy [3][4], and hyperspectral imaging combined with deep learning [5][6] have become swift, reliable, and non-destructive ways to classify and sort fibers. Recent progress shows that spectroscopy, when used with modern machine learning techniques, has a lot of potential to get around the problems we have with identifying textile materials and make recovery more efficient.
+
+\subsection{AN OVERVIEW OF BASICS OF VIBRATIONAL SPECTROSCOPY}
+
+Textile fibers' molecular bonds vibrate in certain ways (stretching, bending, twisting) at certain energy levels. When molecules take in electromagnetic radiation at frequencies that match these vibrational energies, they move to higher vibrational states. This is what infrared (IR) spectroscopy is based on. 
+
+\subsubsection{Mid-Infrared (MIR) Spectroscopy ($\approx 4000 - 400~\mathrm{cm}^{-1}$)}
+\begin{adjustwidth}{1cm}{0cm}
+\textbf{Principle:} MIR spectroscopy only looks at fundamental vibrations, like the $C=O$ stretch, $N-H$ bend, and $C-O$ stretch. These are the most likely and energetically favored transitions from a molecule's ground vibrational state ($v=0$) to its first excited state ($v=1$). 
+\newline
+\textbf{Band Characteristics:} These transitions that are "allowed" by quantum mechanics create strong, sharp, and specific absorption bands, which make a unique chemical "fingerprint". 
+\newline
+\textbf{Chemical Specificity:} The basics of MIR can tell you with a lot of certainty which functional groups are present, such as Amide I/II in proteins and polyamides, Ester $C=O$ in polyesters, $C–O$ stretches in cellulose, and Nitrile $C \equiv N$ in acrylics. 
+\newline
+\textbf{Direct Insight:} The direct observation of these fundamental vibrations yields highly interpretable chemical information, rendering MIR inherently more effective for specific chemical identification than NIR. 
+\end{adjustwidth}
+
+\subsubsection{Near-Infrared (NIR) Spectroscopy ($\approx$780–2500 nm)}
+\begin{adjustwidth}{1cm}{0cm}
+\textbf{Principle:} NIR spectroscopy mainly picks up overtone and combination bands, which are higher-energy, less likely vibrational transitions that mostly involve $X–H$ bonds ($C–H$, $O–H$, $N-H$). 
+\newline
+\textbf{Band Characteristics:} These less likely transitions create broad, weak, and very overlapping absorption bands. This lower intensity and wider range make it much harder to 
+assign peaks to distinct functional groups based on visual inspection alone. 
+\newline
+\textbf{Complexity:} The resulting spectrum is a complicated, twisted profile that usually needs advanced chemometric models to understand. 
+\newline
+\textbf{The main difference between MIR and NIR is:} 
+MIR directly measures fundamental vibrations, which gives it stronger, more specific signals. 
+NIR depends on overtone and combination bands that are weaker and less specific. 
+NIR is faster, can go deeper, and is easier to carry, but MIR is always better at identifying textiles [3]. 
+\end{adjustwidth}
+
+\begin{figure}[H] % H forces the figure to appear exactly here
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/ir image.png} % Adjust width to fit within margins
+    \caption{ r-FT-IR and mATR-FT-IR spectra of most common textile fibers. Spectra in figure represent normalized and averaged results of each class. The 
+vertical axis represents absorbance. As natural cellulose-based fibers have very similar spectra, only cotton is presented. Spectra of other natural 
+fibers like linen, jute and sisal are shown in Additional file . Source: [2]}
+    \label{fig:example}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \caption{Description of samples and datasets utilized by researchers.}
+    \label{tab:researcher_data}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Paper} & \textbf{Data Source} & \textbf{Total Spectra} & \textbf{Sample Categories} \\ \hline
+        Shi \& Sang (2025) & Created their own & 11,147 & 18 (pure \& blends) \\ \hline
+        Huang et al. (2022) & Commercial fibers & 600,404 & 25 (natural \& synthetic) \\ \hline
+        Kainz et al. (2025) & Created their own & Not specified & 12 (pure \& blends) \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{PRIOR RESEARCH}
+
+A lot of research has been done on using spectroscopy to identify textile fibers. This has led to great advancements, but it has also shown that there are still problems with using these techniques in the real world.
+\vspace{0.5cm} \newline
+Zhou et al. (2019) showed that combining near-infrared (NIR) spectroscopy with traditional chemometric methods like PCA, SIMCA, and LDA works well for sorting common textile fibers.[8] Shi and Sang (2025), in their recent study achieved great F1 scores with ModernTCN across 18 textile classes.They achieved classification accuracy of $93.28\%$ and F1-score of $94.47\%$. The results obtained by different researchers found out during literature review are shown in the Figure 2. This showed that NIR combined with machine learning is possibly a rational choice to effectively classify fibers in real time.[4]
+\vspace{0.5cm}  \newline
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{images/Group 12.png}
+    \caption{Comparison of classification accuracies reported by different machine learning models in textile research}
+    \label{fig:placeholder}
+\end{figure}
+
+Further research by other researchers highlighted the limitations of using NIR. Even with these improvements, NIR still has trouble reliably telling chemically very similar fibers apart (like cashmere and wool or certain cellulosic variants) because their spectra overlap, which often means that targeted bands or specialized models are needed [4][8]
+\vspace{0.5cm}  \newline
+Manley (2014) confirmed the speed of NIR but pointed out that MIR is more accurate. He also talked about problems that can come up with scattering, moisture, and finishing.[3] 
+\vspace{0.5cm} \newline
+MIR spectroscopy (FTIR) is known for being more chemically specific [3]. Peets et al. (2019) conducted significant research on reflectance-FTIR (r-FTIR) for textile analysis, demonstrating its efficacy for fragile heritage items and its superiority over ATR in distinguishing specific amide-containing fibers (e.g., silk, wool, polyamide), identifying a distinct silk peak at approximately $1708 \mathrm{cm}^{-1}$. They emphasized the genuinely non-contact characteristic of r-FTIR while recognizing difficulties associated with extremely coarse or fine fibers [2]. To tackle multi-material complexities, Leitner et al. (2024) examined multi-fabric garments by integrating camera-based segmentation with point NIR measurements, acknowledging that bulk analysis is inadequate for heterogeneous textiles. For interpreting complex spectra, Enders et al. (2021) demonstrated the efficacy of image-based CNNs in analyzing intricate FTIR data for functional group mapping, indicating the potential of AI in comprehensive textile analysis [7].
+
+
+\subsection{RESEARCH GAPS IDENTIFIED}
+Following a comprehensive review of the literature and several discussions, various unresolved challenges and critical research gaps have been identified:
+
+\begin{itemize}
+    \item \textbf{Challenges in Discriminating Chemically Similar Fibers:} Present NIR-based models demonstrate constraints in consistently distinguishing fibers with highly analogous chemical compositions, including various cellulose variations or protein-based fibers such as wool and cashmere, attributable to intrinsic spectral overlap [8, 4]. There is a notable research deficiency in systematically utilizing the enhanced precision of MIR's fundamental vibrations to clarify these uncertainties.
+
+    \item \textbf{Model Robustness Against Real-World Variability:} The performance and robustness of spectroscopic models are greatly undermined by the variabilities present in real-world samples, such as dyes, finishing agents, moisture content, and surface topology [3]. This difficulty is made worse by the fact that there aren't many publicly available MIR spectral data sets that systematically account for and characterize these changes. This makes it harder to make models that can be used in many situations.
+
+    \item \textbf{Optimization of Non-Contact MIR for Complex Geometries:} Reflectance-FTIR is a great tool because it doesn't touch the surface and is very precise, but it doesn't work as well when looking at textiles with very textured surfaces or very fine fibers because the signals scatter and the spectral collection isn't always consistent [2]. This involves the development of optimum acquisition protocols and advanced spectral processing techniques to boost its dependability for non-destructive analysis, particularly for delicate historical artifacts.
+
+    \item \textbf{Quantitative Analysis of Blended Textiles:} The accurate quantification of fiber composition in blended textiles is critical for industrial recycling applications. Although MIR spectroscopy is a promising candidate because of its distinct spectral signatures, a systematic investigation and robust validation of MIR-based quantification methodologies, particularly in comparison to established NIR techniques across a wide range of blend ratios, remains an underexplored area.
+
+    \item \textbf{Integrated Analysis of Multi-Component Garments:} Present techniques for the analysis of multifabric garments frequently depend on bulk analysis utilizing NIR, which may not precisely represent localized components. There is a great opportunity to develop integrated, hybrid analytical workflows that combine vision-based spatial segmentation with targeted, high-specificity MIR spectroscopy. This kind of system would make it possible to accurately describe localized parts such as prints, trims, and patches. This is a step up from the bulk analysis that is usually done.
+\end{itemize}
+
+\subsection{MOTIVATION}
+
+There have been big improvements, but there is still a difference between how well spectroscopic methods work in the lab and how well they work in real life for sorting fabrics. There are still a lot of problems with the technologies we have now that make it hard to make a universal and reliable identification system. There are many problems that come up when trying to tell chemically similar fibers apart. For example, dyes and fabric finishes can change the way clothes look in real life, and modern clothes are often made of many different materials. This makes it clear that we need a better way to deal with these problems.
+\vspace{0.5cm} \newline
+This study seeks to address this deficiency by creating a thorough, non-invasive identification system based on the exceptional chemical specificity of Mid-Infrared (MIR) spectroscopy. Our research will evaluate the efficacy of employing MIR alongside advanced pattern recognition models, particularly to address the shortcomings of conventional NIR methodologies. Our method will also include vision-guided sampling to deal with the problems that come with blends, chemically similar fibers, and multi-fabric garments. This is expected to further the research to make textile recycling more accurate and efficient in the future.
+
+\clearpage
+
+% to be reviewed
+\section{Objectives} 
+\hrule
+\vspace{0.5cm}
+The major purpose of this research is to employ mid-infrared imaging and machine learning to find a safe and reliable approach to tell what kind of fabric it is. This main goal immediately tackles the issues with current NIR-only technologies when it comes to chemical specificity and the urgent need for powerful, data-driven solutions for textile analysis. The precise objectives are delineated as follows, informed by the identified research deficiencies:
+
+\begin{enumerate}
+    \item Set up Ground Truth for Data that is Reliable: To ensure a robust foundation for machine learning development, validate the material composition of target fabric samples (Cotton, Polyester, Nylon) by standard destructive flame and chemical testing methods.
+    \item Create a dataset for MIR spectral imaging that is very specific: To fix the problem of not having enough rich, labeled data, construct a simple dataset by getting Mid-Infrared (MIR) spectral photographs from fabric samples that have been confirmed. This makes use of MIR's improved chemical specificity.
+    \item Make and improve different kinds of machine learning classifiers: To accurately analyze complicated MIR data, it is necessary to make and train a variety of machine learning classifiers, such as K-Nearest Neighbors (KNN), Support Vector Machine (SVM), and a 1D Convolutional Neural Network (1D-CNN), using the MIR spectral imaging dataset that was made.
+    \item Systematically Benchmark Model Performance: To quantitatively measure their efficacy, analyze and compare the performance of these three trained models utilizing critical classification metrics, including accuracy, precision, recall, and F1-score.
+    \item Choose the Best ML Model for Identifying Textiles: Find the best machine learning model for this specific MIR-based textile categorization problem by looking at all of the evaluation results. This will help you put your ideas into practice.
+\end{enumerate}
+
+\clearpage
+
+\section{Plan of Work} 
+\hrule
+\vspace{0.5cm}
+The project is structured into several distinct phases to ensure a systematic progression from foundational work to advanced model optimization. The timeline provides a clear roadmap for completing key deliverables.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/planofwork.png}
+    \caption{A flowchart outlining the overall research methodology.}
+    \label{fig:research_flowchart}
+\end{figure}
+
+\subsection{PHASE 1 (WEEKS 1–3):STARTING THE PROJECT AND READING THE LITERATURE}
+\begin{itemize}[itemsep=0.02cm, topsep=0.02cm, parsep=0.02cm]
+    \item Do a thorough review of the literature to find out what research has already been done, what methods are useful, and what the current state of the art is in textile analysis and imaging.
+    \item Come up with a final title for the project and make the main research questions more specific based on the literature and the project's initial scope.
+\end{itemize}
+
+\subsection{PHASE 2 (WEEKS 3–6):GETTING THE MATERIALS AND CHECKING THEM}
+\begin{itemize}[itemsep=0.02cm, topsep=0.02cm, parsep=0.02cm]
+    \item Get and get ready the fabric samples (Cotton, Polyester, Nylon, etc.) that the project needs.
+    \item Start characterizing materials by using chemical and burning tests to check their composition and properties.
+    \item Keep reading the literature to learn more and get more information about the materials and testing methods.
+\end{itemize}
+
+\subsection{PHASE 3 (WEEKS 6–9): CREATING THE FIRST DATASET AND BASELINE MODELING}
+\begin{itemize}[itemsep=0.02cm, topsep=0.02cm, parsep=0.02cm]
+    \item Make the first dataset by taking pictures of textile samples that have been characterized in controlled conditions (normal lighting and MIR imaging).
+    \item Use this dataset to train the first machine learning models, trying out different algorithms.
+    \item Check how well the model works to find out its baseline accuracy and efficiency.
+\end{itemize}
+
+\subsection{PHASE 4 (WEEKS 9–12): GROWING THE DATASET AND MAKING THE MODEL BETTER}
+\begin{itemize}[itemsep=0.02cm, topsep=0.02cm, parsep=0.02cm]
+    \item Add to and change the dataset by: – Using data augmentation methods like rotation, cropping, and brightness adjustment. – Getting more samples in different conditions, like lighting, angles, and fabric states.
+    \item Improve the models' accuracy, speed, and generalization while also expanding the dataset.
+    \item  Keep retraining and reevaluating models as new data and ways to improve them are added.
+\end{itemize}
+
+\noindent\textit{Note: The project is currently at \textbf{Phase 3 (Initial Dataset Creation and Baseline Modeling)} at the time of minor submission.}
+\clearpage
+
+% to be reviewed 
+\section{Experimental Section} 
+\hrule
+\vspace{0.05cm}
+\subsection{Experimental Methods}
+
+We chose 3 fabrics for initial study: Cotton, Polyester, and Nylon. To ensure the ground truth for our dataset, each sample was rigorously verified using burn tests and chemical solubility tests.
+\begin{itemize}[itemsep=0.05cm, topsep=0cm, parsep=0.05cm] 
+    \item We performed two tests for checking: 
+    \begin{itemize}[itemsep=0.05cm, topsep=0.05cm, parsep=0.05cm]
+        \item \textbf{Burning Test:} We looked at how each sample acted near a flame, such as whether it melted, burned continuously, smelled, and what kind of residue it left behind (e.g., fluffy ash, hard bead). 
+        \item \textbf{Chemical Solubility Test:} Acetone (70 percent v/v), 5N HCl, CaCl2 + HCOOH, 75 percent Sulphuric Acid, and Concentrated Sulphuric Acid were used to test the samples one after the other. Each fiber exhibited a unique solubility response. 
+    \end{itemize}
+\end{itemize}
+Only materials that showed the expected verification responses were kept; the rest were discarded and not added to the MIR imaging dataset.Table 2 and 3 shows the verification results for Cotton, Nylon, and Polyester for reference.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/self_extinghuishing_poly.png}
+        \caption{Polyester showing self-extinguishing behavior.}
+        \label{fig:poly_burn}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/no_self_extinguishing.png}
+        \caption{Suspected nylon sample failing to self-extinguish.}
+        \label{fig:nylon_burn}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/char_formation_of _knitted.jpg}
+        \caption{Char formation indicating blended composition.}
+        \label{fig:char_burn}
+    \end{subfigure}
+    \caption{Burn test results used to verify fabric composition.}
+    \label{fig:burn_test_images}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Burn Test Results for Fabric Verification.}
+\label{tab:burn_test}
+\begin{tabular}{|p{2.5cm}|p{4.5cm}|p{2.5cm}|p{3cm}|}
+\hline
+\textbf{Fibre} & \textbf{Reaction to Flame} & \textbf{Odour} & \textbf{Ash/Residue} \\ \hline
+Cotton & Burns quickly, continues to glow. & Burning paper & Small, fluffy grey ash. \\ \hline
+Nylon & Shrinks, melts, usually self-extinguishing. & Celery-like & Hard grey/brown bead. \\ \hline
+Polyester & Shrinks, melts, black smoke, self-extinguishing. & Chemical & Hard, round black bead. \\ \hline
+\end{tabular}
+\end{table}
+
+The burn test confirmed the identities by comparing flame behavior, odor, and residue. For chemical verification, the solubility of each fabric was tested in various solvents.
+
+\begin{table}[H]
+\centering
+\caption{Chemical Solubility Test Results.}
+\label{tab:chemical_test}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Solvent} & \textbf{Cotton} & \textbf{Polyester} & \textbf{Nylon} \\ \hline
+Acetone & Insoluble & Insoluble & Insoluble \\ \hline
+5N HCl & Insoluble & Insoluble & Soluble \\ \hline
+75\% H\(_2\)SO\(_4\) & Soluble & Insoluble & - \\ \hline
+Conc. H\(_2\)SO\(_4\) & - & Soluble & - \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Dataset Creation} 
+An MIR camera operating in the 7.5–14 µm wavelength range was used for image acquisition.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/nylon_sample.jpg}
+        \caption{Nylon sample.}
+        \label{fig:nylon_sample}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/cotton_sample.jpg}
+        \caption{Cotton sample.}
+        \label{fig:cotton_sample}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/polyester_sample.jpg}
+        \caption{Polyester sample.}
+        \label{fig:polyester_sample}
+    \end{subfigure}
+
+    \vspace{0.4cm}
+    
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/nylon.jpg}
+        \caption{MIR image of Nylon.}
+        \label{fig:nylon_mir}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/cotton.jpg}
+        \caption{MIR image of Cotton.}
+        \label{fig:cotton_mir}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/polyester.jpg}
+        \caption{MIR image of Polyester.}
+        \label{fig:polyester_mir}
+    \end{subfigure}
+    \caption{Fabric samples (top row) and their corresponding MIR images (bottom row).}
+    \label{fig:six_images_grid}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Dataset Size:} 120 images total (40 for each fabric type) as of September 20.
+    \item \textbf{Image Specifications:} JPG format, with dimensions of 1280x960 pixels.
+    \item \textbf{Controlled Conditions:} A fixed camera at a distance of 0.07 meters was maintained, and the ambient temperature was kept within a controlled range of 21–24°C.
+\end{itemize}
+
+\clearpage
+
+% to be reviewed 
+\section{Summary and Conclusions} 
+\hrule
+\vspace{0.5cm}
+This report emphasizes the necessity of developing automated sorting systems for textile waste and demonstrates the progress made since the mid-term evaluation. A review of the literature shows that machine learning methods work well in the following use case, showing that they can be used to solve difficult problems, such as identifying and classifying textiles. Using what we learned from these studies, we started experiments by carefully looking at samples of cotton, polyester, and nylon and have made a labeled dataset of 120 MIR images in a controlled setting as of September 20. This dataset will be used to train KNN, SVM, and 1D-CNN models. The project is still on track to reach its goal of creating a good MIR imaging pipeline for automated textile sorting. This will help with sustainable waste management and circular economy efforts.
+
+\clearpage
+
+% to be reviewed 
+\section*{References}
+\addcontentsline{toc}{section}{References}
+\renewcommand{\refname}{}
+\begin{thebibliography}{99}
+
+\bibitem{fashionforgood}
+Fashion for Good, Sorting for Circularity: India – Wealth in Waste. Complete URL: https://www.fashionforgood.com/report/wealth-in-waste/[Accessed on August 22, 2025].
+
+\bibitem{ftir}
+Peets, P., Kaupmees, K., Vahur, S., Leito, I., Reflectance FT-IR spectroscopy as a viable option for textile fiber identification. Heritage Science, 2019, 7, 93.
+
+\bibitem{nir_principles}
+Manley, M., Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials. Chemical Society Reviews, 2014, 43, 8200–8214.
+
+\bibitem{shi_sang}
+Shi, C., Sang, J., Qualitative recognition of waste textiles based on near-infrared spectroscopy and ModernTCN. Microchemical Journal, 2025, 214, 113902.
+
+\bibitem{kainz}
+Kainz, M., Krondorfer, J.K., Jaschik, M., Jernej, M., Ganster, H., Supervised and unsupervised textile classification via near-infrared hyperspectral imaging and deep learning. arXiv preprint, arXiv:2505.03575, 2025.
+
+\bibitem{huang}
+Huang, J., Li, Y., Gao, S., et al., Non-destructive detection and classification of textile fibres based on hyperspectral imaging and 1D-CNN. Analytica Chimica Acta, 2022, 1224, 340238.
+
+\bibitem{enders2021}
+Enders, A.A., North, N.M., Fensore, C.M., Velez-Alvarez, J., Allen, H.C., Functional group identification for FTIR spectra using image-based machine learning models. Analytical Chemistry, 2021, 93, 9711–9718.
+
+\bibitem{zhou2019}
+Zhou, J., Yu, L., Ding, Q., Wang, R., Textile fiber identification using near-infrared spectroscopy and pattern recognition. AUTEX Research Journal, 2019, 19(2), 201–209.
+
+\end{thebibliography}
+
+\end{document}
                 </code></pre>
             </div>
         </div>
