@@ -1,436 +1,394 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Proposal: AI-Powered Textile Identification</title>
-    <!-- Chosen Palette: Scholarly Neutrals -->
-    <!-- Application Structure Plan: The SPA uses a thematic, non-linear structure with a top navigation bar (Home, Bottleneck, Why AI?, Literature Review, Timeline, Citations) to allow users to jump to sections of interest. This is more user-friendly than a linear slide presentation. The design uses interactive cards for problems/solutions, a bar chart for research comparison, a visual flow diagram for the proposed model, and a clickable timeline. This structure is chosen to break down the proposal into digestible, engaging chunks, facilitating better understanding and exploration of the project's key components. -->
-    <!-- Visualization & Content Choices: 1. Literature Review -> Goal: Compare -> Viz: Horizontal Bar Chart (Chart.js) -> Interaction: Hover tooltips -> Justification: Directly compares key accuracy metrics visually. 2. Proposed Framework -> Goal: Organize -> Viz: HTML/CSS Flow Diagram + Image -> Interaction: Hover for details -> Justification: Clarifies the multi-stage plan better than text and shows the specific architecture. 3. Timeline -> Goal: Change/Process -> Viz: Interactive Accordion/Collapsible List -> Interaction: Click to expand/collapse phases -> Justification: Saves space and focuses user attention. 4. Problems/Solutions -> Goal: Inform -> Viz: Styled Cards with Unicode Icons -> Interaction: Hover effects -> Justification: More engaging and scannable than bullet points. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>Textile Detection Project | IIT Delhi</title>
     <style>
+        :root {
+            --primary-color: #0d47a1;
+            --secondary-color: #1976d2;
+            --accent-color: #ffab40;
+            --text-color: #333;
+            --bg-color: #f4f4f9;
+            --header-bg: #fff;
+            --card-bg: #fff;
+            --footer-bg: #333;
+            --footer-text: #fff;
+            --shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F8F7F4;
-            color: #333333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 40vh;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .nav-link {
-            transition: color 0.3s ease;
+        header {
+            background: var(--header-bg);
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .nav-link:hover {
-            color: #4A90E2;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        .hero {
+            background: linear-gradient(rgba(13, 71, 161, 0.8), rgba(13, 71, 161, 0.8)), url('https://images.unsplash.com/photo-1555529771-83d31a462356?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 0 10px;
+        }
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+        }
+        .btn-primary:hover {
+            background-color: #ffd180;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid var(--accent-color);
+        }
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            transform: translateY(-2px);
+        }
+        section {
+            padding: 60px 0;
+        }
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
         .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
-        .timeline-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
+        .card h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
         }
-        .timeline-item.active .timeline-content {
-            max-height: 500px; 
+        .methodology-flow {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
         }
-        .timeline-item.active .timeline-arrow {
-            transform: rotate(90deg);
+        .team-member {
+            text-align: center;
         }
-        .timeline-arrow {
-            transition: transform 0.3s ease;
+        .team-member h4 {
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        .team-member p {
+            font-style: italic;
+            color: #666;
+        }
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 900px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .close-btn {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-btn:hover, .close-btn:focus {
+            color: black;
+        }
+        .toggle-btn {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            cursor: pointer;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .latex-code {
+            background: #2d2d2d;
+            color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 60vh;
+            overflow-y: auto;
+            font-family: "Courier New", Courier, monospace;
+        }
+        .pdf-view {
+            width: 100%;
+            height: 60vh;
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-md">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
-                <div class="text-xl font-bold text-gray-800">Progress Report</div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-600">Home</a>
-                    <a href="#challenge" class="nav-link text-gray-600">Bottleneck</a>
-                    <a href="#solution" class="nav-link text-gray-600">Why AI?</a>
-                    <a href="#plan" class="nav-link text-gray-600">Literature Review</a>
-                    <a href="#timeline" class="nav-link text-gray-600">Timeline</a>
-                    <a href="#citations" class="nav-link text-gray-600">Citations</a>
-                </nav>
-                <div class="md:hidden">
-                    <button id="menu-btn" class="text-gray-800 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#home" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Home</a>
-            <a href="#challenge" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Bottleneck</a>
-            <a href="#solution" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Why AI?</a>
-            <a href="#plan" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Literature Review</a>
-            <a href="#timeline" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Timeline</a>
-            <a href="#citations" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Citations</a>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Textile Sorter</div>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#team">Team</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <main>
-        <section id="home" class="pt-24 md:pt-32 pb-16 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">Material Detection of Textile Fabrics using Machine Learning</h1>
-                <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-600">Weekly Progress</p>
-                <div class="mt-8">
-                    <p class="text-sm font-medium text-gray-500">Presented By</p>
-                    <p class="mt-1 text-lg font-semibold text-gray-800">Lakshya Kumar (2022TT12183) &nbsp;&nbsp;|&nbsp;&nbsp; Keshav Chachan (2022TT12148)</p>
-                    <p class="mt-1 text-md text-gray-500">Department of Textile and Fibre Technology, IIT Delhi</p>
-                </div>
+        <section class="hero">
+            <h1>Automated Textile Detection with MIR Imaging</h1>
+            <p>A non-destructive and efficient approach to material detection using Mid-Infrared Imaging and Machine Learning for a circular economy.</p>
+            <div>
+                <a href="BTP_MidTerm_Report.pdf" target="_blank" class="btn btn-primary">View Full Report (PDF)</a>
+                <button id="viewSourceBtn" class="btn btn-secondary">View LaTeX Source</button>
             </div>
         </section>
 
-        <section id="challenge" class="py-16 md:py-24">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">The Problem with Traditional Methods</h2>
-                    <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-600">Current fabric identification methods are holding the industry back, creating critical bottlenecks.</p>
+        <section id="about" class="container">
+            <h2>About The Project</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>The Problem</h3>
+                    [cite_start]<p>India generates about <strong>7.8 million tons of textile waste annually</strong>, with a large portion ending up in landfills[cite: 32, 34]. [cite_start]Manual sorting is slow, error-prone, and a major bottleneck for effective recycling[cite: 38, 39]. This inefficiency hinders the potential for a circular textile economy.</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="card bg-white p-8 rounded-xl shadow-lg">
-                        <div class="text-4xl mb-4">🤔</div>
-                        <h3 class="text-xl font-bold mb-2">Subjective & Inconsistent</h3>
-                        <p class="text-gray-600">Manual identification by touch and sight is unreliable and varies dramatically with an individual's experience.</p>
-                    </div>
-                    <div class="card bg-white p-8 rounded-xl shadow-lg">
-                        <div class="text-4xl mb-4">💥</div>
-                        <h3 class="text-xl font-bold mb-2">Destructive</h3>
-                        <p class="text-gray-600">Accurate chemical tests require damaging the sample, making them unsuitable for finished products.</p>
-                    </div>
-                    <div class="card bg-white p-8 rounded-xl shadow-lg">
-                        <div class="text-4xl mb-4">⏳</div>
-                        <h3 class="text-xl font-bold mb-2">Slow & Labor-Intensive</h3>
-                        <p class="text-gray-600">Microscopic analysis is a time-consuming process, completely impractical for large-scale industrial operations.</p>
-                    </div>
-                    <div class="card bg-white p-8 rounded-xl shadow-lg">
-                        <div class="text-4xl mb-4">❓</div>
-                        <h3 class="text-xl font-bold mb-2">Prone to Error</h3>
-                        <p class="text-gray-600">Differentiating complex blends and authentic materials from fakes is extremely difficult and error-prone.</p>
-                    </div>
+                <div class="card">
+                    <h3>Our Solution</h3>
+                    [cite_start]<p>This project explores an automated, non-destructive method for identifying textile materials using <strong>Mid-Infrared (MIR) imaging and machine learning</strong>[cite: 41]. [cite_start]By leveraging the unique chemical fingerprints MIR provides, we aim to make textile sorting faster, more accurate, and scalable[cite: 42].</p>
                 </div>
-            </div>
-        </section>
-
-        <section id="solution" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Why Artificial Intelligence?</h2>
-                    <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-600">AI provides a powerful, modern solution to overcome these limitations.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <div class="text-4xl mb-4">⚡️</div>
-                        <h3 class="text-xl font-bold mb-2">Speed & Efficiency</h3>
-                        <p class="text-gray-600">AI models can analyze spectral data and classify a fabric in milliseconds, enabling real-time industrial sorting.</p>
-                    </div>
-                    <div class="card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <div class="text-4xl mb-4">🔬</div>
-                        <h3 class="text-xl font-bold mb-2">Non-Destructive</h3>
-                        <p class="text-gray-600">Paired with spectroscopy (NIR/HSI), AI can identify materials without any physical harm to the textile.</p>
-                    </div>
-                    <div class="card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <div class="text-4xl mb-4">🎯</div>
-                        <h3 class="text-xl font-bold mb-2">Superior Accuracy</h3>
-                        <p class="text-gray-600">A well-trained model can achieve over 95% accuracy, providing objective and repeatable results.</p>
-                    </div>
-                    <div class="card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <div class="text-4xl mb-4">🌐</div>
-                        <h3 class="text-xl font-bold mb-2">Scalability</h3>
-                        <p class="text-gray-600">A single model can be deployed across countless devices, making automated sorting feasible and cost-effective.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="plan" class="py-16 md:py-24">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Literature Review</h2>
-                    <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-600">We have mentioned the key findings of our literature review below.</p>
-                </div>
-
-                <div class="mb-16">
-                    <h3 class="text-2xl font-bold text-center mb-8">Findings</h3>
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <p class="text-center text-gray-600 mb-4">Recent studies confirm the high potential of deep learning for textile classification. Here's a comparison of key results from the literature.</p>
-                        <div class="chart-container">
-                            <canvas id="researchChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-16">
-                    <h3 class="text-2xl font-bold text-center mb-8">Proposed Models</h3>
-                    <div class="flex flex-col md:flex-row items-stretch justify-center gap-4 text-center">
-                        <div class="card bg-white p-6 rounded-lg shadow-md w-full md:w-1/3 flex flex-col">
-                            <div class="text-blue-500 font-bold text-lg mb-2">1. Baselines</div>
-                            <p class="text-gray-700">Implement traditional models like <b>KNN & SVM</b> to set a performance benchmark.</p>
-                        </div>
-                        <div class="text-2xl text-gray-400 font-bold mx-2 hidden md:flex items-center">→</div>
-                        <div class="card bg-white p-6 rounded-lg shadow-md w-full md:w-1/3 flex flex-col">
-                            <div class="text-green-500 font-bold text-lg mb-2">2. Proven Architectures</div>
-                            <p class="text-gray-700">Train robust deep learning models like <b>1D-CNN, ResNet, </b>.</p>
-                        </div>
-                        <div class="text-2xl text-gray-400 font-bold mx-2 hidden md:flex items-center">→</div>
-                        <div class="card bg-white p-6 rounded-lg shadow-md w-full md:w-1/3 flex flex-col">
-                            <div class="text-purple-500 font-bold text-lg mb-2">3. State-of-the-Art</div>
-                            <p class="text-gray-700 flex-grow">Optimize a <b>ModernTCN</b> model for the best balance of accuracy and efficiency.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mb-16">
-                    <div class="text-center mb-12">
-                        <h3 class="text-2xl font-bold text-gray-900">ModernTCN Model Architecture</h3>
-                        <p class="mt-3 max-w-3xl mx-auto text-lg text-gray-600">
-                            Model: ModernTCN <br>
-                            Dataset: a raw near-infrared spectral dataset including
-                            the spectra of 18 categories of fabrics consisting of 11,147 sample<br>
-                            Preprocessing:  standard
- normal variate transformation, SG smoothing, min–max normalization, and arPLS baseline correction
-                        </p>
-                    </div>
-                    <div class="max-w-5xl mx-auto bg-gray-50 p-4 sm:p-6 md:p-8 rounded-xl shadow-lg border border-gray-200">
-                        <img src="images/modernTCN.jpg" alt="Fabric ModernTCN Architecture"class="w-full h-auto rounded-lg shadow-md">
-                        <p class="text-center mt-4 text-sm text-gray-500">Fig 1. The structural diagrams of Fabric-ModernTCN (a), its Backbone (b), and its constituent ModernTCN Block (c). Source: Shi & Sang (2025).</p>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-xl shadow-lg">
-                        <h3 class="text-2xl font-bold mb-4">Data Collection & Preparation</h3>
-                        <p class="text-gray-600 mb-4">High-quality data is the foundation of our model. We will:</p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <span class="text-blue-500 mr-3 mt-1">✓</span>
-                                <span>First, request access to the <b>"Fabric-NIR-Dataset"</b> (11,000+ samples) from published research.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-blue-500 mr-3 mt-1">✓</span>
-                                <span>Else, we might need to <b>create our own dataset</b>.</span>
-                            </li>
-                             <li class="flex items-start">
-                                <span class="text-blue-500 mr-3 mt-1">✓</span>
-                                <span>Clean and enhance data via <b>Normalization (SNV)</b> and <b>Smoothing (SG Filter)</b>.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bg-white p-8 rounded-xl shadow-lg">
-                        <h3 class="text-2xl font-bold mb-4">Expected Outcomes & Metrics</h3>
-                        <p class="text-gray-600 mb-4">Our goal is a practical, high-performance model. Success will be measured by:</p>
-                        <div class="text-center">
-                            <div class="text-5xl font-extrabold text-blue-600 mb-2">>95%</div>
-                            <div class="text-xl font-bold mb-4">Classification Accuracy</div>
-                            <p class="text-gray-600">Along with <b>Precision, Recall, F1-Score</b>, and <b>real-time inference speed</b> for industrial viability.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="timeline" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Project Timeline</h2>
-                    <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-600">A structured plan to ensure timely completion and success.</p>
-                </div>
-                <div class="max-w-3xl mx-auto">
-                    <div class="border-l-2 border-blue-500 pl-8 space-y-2">
-                        <div class="timeline-item active">
-                            <div class="timeline-header cursor-pointer flex justify-between items-center py-4">
-                                <h3 class="text-xl font-bold">Phase 1: Data Acquisition & Preprocessing</h3>
-                                <span class="timeline-arrow text-blue-500 text-2xl font-bold">›</span>
-                            </div>
-                            <div class="timeline-content pl-4 pb-4">
-                                <p class="text-gray-600">Finalize dataset strategy, collect samples, acquire spectral data, and build the full data preprocessing pipeline. <strong class="text-gray-800">(Weeks 1-4)</strong></p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-header cursor-pointer flex justify-between items-center py-4">
-                                <h3 class="text-xl font-bold">Phase 2: Baseline Model Training</h3>
-                                <span class="timeline-arrow text-blue-500 text-2xl font-bold">›</span>
-                            </div>
-                            <div class="timeline-content pl-4 pb-4">
-                                <p class="text-gray-600">Implement and train baseline models (KNN, SVM) and the initial 1D-CNN. Analyze results to establish performance benchmarks. <strong class="text-gray-800">(Weeks 5-8)</strong></p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-header cursor-pointer flex justify-between items-center py-4">
-                                <h3 class="text-xl font-bold">Phase 3: Advanced Model Optimization</h3>
-                                <span class="timeline-arrow text-blue-500 text-2xl font-bold">›</span>
-                            </div>
-                            <div class="timeline-content pl-4 pb-4">
-                                <p class="text-gray-600">Implement and train advanced models (ResNet, ModernTCN). Conduct hyperparameter tuning and comparative analysis to select the best model. <strong class="text-gray-800">(Weeks 9-12)</strong></p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-header cursor-pointer flex justify-between items-center py-4">
-                                <h3 class="text-xl font-bold">Phase 4: Finalization & Reporting</h3>
-                                <span class="timeline-arrow text-blue-500 text-2xl font-bold">›</span>
-                            </div>
-                            <div class="timeline-content pl-4 pb-4">
-                                <p class="text-gray-600">Evaluate the final model on the held-out test set. Analyze performance, draft the final project report, and prepare the presentation of our findings. <strong class="text-gray-800">(Weeks 13-16)</strong></p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card">
+                    <h3>Project Objectives</h3>
+                    <p>Our main goal is to develop a reliable system for fabric identification. [cite_start]Key objectives include: creating a validated MIR spectral dataset for cotton, polyester, and nylon; building and training various ML models (KNN, SVM, 1D-CNN); and benchmarking their performance to find the most effective classifier[cite: 173, 176, 177, 179].</p>
                 </div>
             </div>
         </section>
         
-        <section id="citations" class="py-16 md:py-24">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Citations & Sources</h2>
-                    <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-600">This proposal is based on findings from the following key research papers.</p>
+        <hr>
+
+        <section id="methodology" class="container">
+            <h2>Methodology</h2>
+            <p style="text-align:center; max-width: 800px; margin: 0 auto 40px;">Our research follows a systematic four-phase plan, from literature review and material validation to dataset creation and model optimization. The process ensures that our machine learning models are built on a foundation of reliable, ground-truth data.</p>
+            <img src="https://i.imgur.com/g8o4qYV.png" alt="Research Methodology Flowchart" class="methodology-flow">
+        </section>
+        
+        <hr>
+
+        <section id="results" class="container">
+            <h2>Initial Results & Dataset</h2>
+            [cite_start]<p style="text-align:center; max-width: 800px; margin: 0 auto 40px;">As of September 20, our initial dataset consists of <strong>120 MIR images</strong> (40 for each fabric type) captured under controlled laboratory conditions[cite: 258, 260]. [cite_start]Each fabric's identity was rigorously verified using burn and chemical solubility tests to ensure data integrity[cite: 232].</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>(a) Nylon Sample</h3>
+                    <img src="https://i.imgur.com/9v4j4eH.png" alt="Nylon Sample" style="width:100%; border-radius: 5px;">
                 </div>
-                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-                    <ul class="space-y-4 text-gray-700">
-                        <li><strong>1. Shi, C., & Sang, J. (2025).</strong> <em>Qualitative recognition of waste textiles based on near-infrared spectroscopy and ModernTCN.</em> Microchemical Journal, 214, 113902.</li>
-                        <li><strong>2. Kainz, M., et al. (2025).</strong> <em>Supervised and Unsupervised Textile Classification via Near-Infrared Hyperspectral Imaging and Deep Learning.</em> arXiv:2505.03575v1.</li>
-                        <li><strong>3. Huang, J., et al. (2022).</strong> <em>Non-destructive detection and classification of textile fibres based on hyperspectral imaging and 1D-CNN.</em> Analytica Chimica Acta, 1224, 340238.</li>
-                         <li><strong>4. Enders, A. A., et al. (2021).</strong> <em>Functional Group Identification for FTIR Spectra Using Image-Based Machine Learning Models.</em> Analytical Chemistry, 93(28), 9711-9718.</li>
-                    </ul>
+                <div class="card">
+                    <h3>(d) MIR Image of Nylon</h3>
+                    <img src="https://i.imgur.com/uVzU9aN.png" alt="MIR Image of Nylon" style="width:100%; border-radius: 5px;">
+                </div>
+                <div class="card">
+                    <h3>(b) Cotton Sample</h3>
+                    <img src="https://i.imgur.com/sW2J2E5.png" alt="Cotton Sample" style="width:100%; border-radius: 5px;">
+                </div>
+                 <div class="card">
+                    <h3>(e) MIR Image of Cotton</h3>
+                    <img src="https://i.imgur.com/K5bN4eE.png" alt="MIR Image of Cotton" style="width:100%; border-radius: 5px;">
+                </div>
+                <div class="card">
+                    <h3>(c) Polyester Sample</h3>
+                    <img src="https://i.imgur.com/7gJvO5A.png" alt="Polyester Sample" style="width:100%; border-radius: 5px;">
+                </div>
+                <div class="card">
+                    <h3>(f) MIR Image of Polyester</h3>
+                    <img src="https://i.imgur.com/yU2m1gJ.png" alt="MIR Image of Polyester" style="width:100%; border-radius: 5px;">
+                </div>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section id="team" class="container">
+            <h2>The Research Team</h2>
+            <div class="grid">
+                <div class="card team-member">
+                    <h4>Lakshya Kumar</h4>
+                    <p>2022TT12183</p>
+                </div>
+                <div class="card team-member">
+                    <h4>Keshav Chachan</h4>
+                    <p>2022TT12148</p>
+                </div>
+                <div class="card team-member">
+                    <h3>Under the Guidance of</h3>
+                    <h4>Prof. Apurba Das</h4>
+                    <p>Principal Investigator</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white">
-        <div class="container mx-auto px-6 py-8 text-center">
-            <h3 class="text-2xl font-bold">Thank You</h3>
-            <p class="mt-2 text-gray-400">Questions?</p>
-            <p class="mt-8 text-sm text-gray-500">IIT Delhi - Department of Textile and Fibre Technology</p>
+    <footer>
+        <div class="container">
+            <p>&copy; September 2025 | Department of Textile and Fibre Engineering, Indian Institute of Technology Delhi</p>
         </div>
     </footer>
 
+    <div id="latexModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <button id="toggleViewBtn" class="toggle-btn">Toggle View</button>
+            <div id="pdfContainer">
+                <iframe class="pdf-view" src="BTP_MidTerm_Report.pdf"></iframe>
+            </div>
+            <div id="latexContainer" style="display:none;">
+                <pre class="latex-code"><code>
+% Add Your LaTeX Code Here.
+% This is a placeholder. For a real implementation, 
+% you would fetch or embed the actual .tex file content.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\title{Mid-Infrared Imaging and Machine Learning Approaches for Non-Destructive Material Detection of Textile Fabrics}
+\author{Lakshya Kumar (2022TT12183) \and Keshav Chachan (2022TT12148)}
+\date{September 2025}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+India has a big problem with textile waste management. Every year, about 7.8 million tons of textile waste are made. It is very important to think about how to get rid of this waste. About 34\% of it ends up in landfills, 25\% is downcycled, and 17\% is reused or mechanically recycled...
+
+% ... rest of the LaTeX document would go here.
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Mobile menu toggle
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+        const modal = document.getElementById("latexModal");
+        const btn = document.getElementById("viewSourceBtn");
+        const span = document.getElementsByClassName("close-btn")[0];
+        const toggleBtn = document.getElementById("toggleViewBtn");
+        const pdfContainer = document.getElementById("pdfContainer");
+        const latexContainer = document.getElementById("latexContainer");
 
-            // Smooth scrolling for nav links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    if (mobileMenu.classList.contains('hidden') === false) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
-
-            // Timeline accordion
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            timelineItems.forEach(item => {
-                const header = item.querySelector('.timeline-header');
-                header.addEventListener('click', () => {
-                    // Close other items
-                    timelineItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                    // Toggle current item
-                    item.classList.toggle('active');
-                });
-            });
-
-            // Research Chart
-            const ctx = document.getElementById('researchChart').getContext('2d');
-            const researchData = {
-                labels: ['C. Shi and J. Sang', 'Kainz et al. (2025)', 'Huang et al. (2022)'],
-                datasets: [{
-                    label: 'Model Accuracy',
-                    data: [93.28, 98.6, 91.2],
-                    backgroundColor: [
-                        'rgba(74, 144, 226, 0.6)',
-                        'rgba(80, 227, 194, 0.6)',
-                        'rgba(126, 211, 33, 0.6)'
-                    ],
-                    borderColor: [
-                        'rgba(74, 144, 226, 1)',
-                        'rgba(80, 227, 194, 1)',
-                        'rgba(126, 211, 33, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            };
-
-            new Chart(ctx, {
-                type: 'bar',
-                data: researchData,
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            max: 100,
-                            title: {
-                                display: true,
-                                text: 'Accuracy (%)'
-                            }
-                        },
-                        y: {
-                           ticks: {
-                                autoSkip: false
-                           }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.x !== null) {
-                                        if (context.raw === 100) {
-                                            label += 'Perfect Object-based Accuracy';
-                                        } else {
-                                            label += context.parsed.x + '%';
-                                        }
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        });
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        toggleBtn.onclick = function() {
+            if (pdfContainer.style.display === "none") {
+                pdfContainer.style.display = "block";
+                latexContainer.style.display = "none";
+                toggleBtn.textContent = "View LaTeX Source";
+            } else {
+                pdfContainer.style.display = "none";
+                latexContainer.style.display = "block";
+                toggleBtn.textContent = "View PDF";
+            }
+        }
     </script>
 
 </body>
