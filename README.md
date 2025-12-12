@@ -1,34 +1,42 @@
-# Mid-Infrared Imaging & Machine Learning for Textile Detection
+# mid-infrared imaging and machine learning approaches for non-destructive and efficient material detection of textile fabrics
 
-A B.Tech Major Project for TXD401, submitted to the Department of Textile and Fibre Engineering at the Indian Institute of Technology Delhi.
+major project part i (txd 401) submitted to the department of textile and fibre engineering at the indian institute of technology delhi.
 
----
+## project investigators
 
-## Project By
+lakshya kumar (2022tt12183)
+keshav chachan (2022tt12148)
 
-- **Lakshya Kumar** (2022TT12183)
-- **Keshav Chachan** (2022TT12148)
+## supervisors
 
----
+prof. apurba das (principal investigator)
+prof. bipin kumar (co-principal investigator)
 
-## Brief Description
+## project abstract
 
-This project tackles the critical issue of textile waste in India by proposing an automated, non-destructive method for sorting fabrics. Traditional manual sorting is slow and inefficient, creating a bottleneck for recycling. Our approach uses **Mid-Infrared (MIR) imaging** to capture the unique chemical "fingerprints" of different textiles and applies **machine learning models** to classify them accurately. The goal is to develop a robust system that can enhance the efficiency of textile recycling and support a circular economy.
+[cite_start]this project addresses the critical environmental challenge of textile waste management in india by proposing an automated, non-destructive framework for material identification [cite: 32, 34][cite_start]. manual sorting currently constitutes a major bottleneck due to inefficiency and human error [cite: 33][cite_start]. this research investigates spectroscopic techniques combined with machine learning to distinguish between cotton, polyester, and nylon fibers[cite: 34].
 
----
+[cite_start]the study initially focused on passive mid-infrared (mir) imaging utilizing a yolo11x-cls architecture [cite: 35][cite_start]. while the model demonstrated high accuracy on controlled validation sets, it exhibited limitations in robustness regarding environmental thermal noise and dye variations [cite: 36][cite_start]. consequently, the research methodology was reoriented towards terahertz (thz) time-domain spectroscopy [cite: 37][cite_start]. experimental results indicate that the thz regime (0.1-10 thz) offers enhanced resilience to dye interference and distinct spectral absorption peaks, proving to be a more viable candidate for robust textile sorting[cite: 38].
 
-## LaTeX Report Template
+## methodology
 
-The LaTeX source files used to generate the `BTP_MidTerm_Report.pdf` are included in this project.
+the research was conducted in two distinct phases:
 
-This template is designed for academic submissions and **can be freely used and modified by other students of the Department of Textile and Fibre Engineering, IIT Delhi**, for their own B.Tech Projects, M.Tech Projects, or other course reports.
+### phase i: mir based classification
+* [cite_start]**dataset creation**: acquisition of 120 mir images (40 per class) under controlled conditions[cite: 243, 245].
+* [cite_start]**ground truth verification**: validation of samples via standard burn tests and chemical solubility tests[cite: 216].
+* [cite_start]**modeling**: implementation of yolo11x-cls for fabric classification using transfer learning[cite: 248, 249].
+* [cite_start]**analysis**: identification of limitations regarding passive mir imaging in uncontrolled environments due to thermal noise and surface texture[cite: 324].
 
----
+### phase ii: terahertz spectroscopy characterization
+* [cite_start]**sample preparation**: analysis of laboratory-dyed, commercial, and blended cotton samples to test dye independence[cite: 332].
+* [cite_start]**spectral analysis**: comparative analysis of absorbance spectra for cotton, nylon, and polyester[cite: 363].
+* [cite_start]**key findings**: identification of unique absorption peaks and confirmation that thz spectroscopy effectively characterizes fiber density and structure with diminished interference from dyes[cite: 38, 367].
 
-## Project Website
+## latex report template
 
-This repository also contains the `index.html` file for a static website that provides a visual summary of the project's aims, methodology, and initial findings.
+the latex source files used to generate the project report are included in this repository. this template is compliant with the formatting standards of the department of textile and fibre engineering, iit delhi. it may be utilized by other students for b.tech projects, m.tech projects, or academic reports.
 
-### Acknowledgment
+## acknowledgment
 
-The HTML, CSS, and JavaScript code for the project website were generated with the assistance of generative AI tools to rapidly create a digital presentation of the research work.
+[cite_start]we express our gratitude to our supervisors, prof. apurba das and prof. bipin kumar, for their guidance [cite: 21][cite_start]. we also thank mr. sagar for his mentorship and prof. amartya sen gupta (department of physics) for his technical insights regarding spectroscopic techniques[cite: 24, 26].
