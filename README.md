@@ -1,16 +1,11 @@
 # mid-infrared imaging and machine learning approaches for non-destructive and efficient material detection of textile fabrics
 
-major project part i (txd 401) submitted to the department of textile and fibre engineering at the indian institute of technology delhi.
+major project part 1 (TXD 401) submitted to the Department of Textile and Fibre Engineering at the Indian Institute of Technology Delhi.
 
 ## project investigators
 
-lakshya kumar (2022tt12183)
-keshav chachan (2022tt12148)
-
-## supervisors
-
-prof. apurba das (principal investigator)
-prof. bipin kumar (co-principal investigator)
+lakshya kumar (2022TT12183)
+keshav chachan (2022TT12148)
 
 ## project abstract
 
